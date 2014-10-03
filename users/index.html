@@ -2,44 +2,71 @@
 <html>
 <head>
   <title>Hunter Meyer | Jr.DevJobs</title>
-
+  <meta name='viewport' content='width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes'>
   <script src='../bower_components/platform/platform.js'></script>
   <link rel='import' href='../bower_components/core-animated-pages/core-animated-pages.html'>
   <link rel='import' href='../bower_components/core-icons/core-icons.html'>
+  <link rel='import' href='../bower_components/core-toolbar/core-toolbar.html'>
+  <link rel='import' href='../bower_components/core-header-panel/core-header-panel.html'>
+  <link rel='import' href='../bower_components/paper-elements/paper-elements.html'>
 
   <style>
+    html {
+      height: 100%;
+      margin: 0;
+    }
     body {
       font-family: 'Roboto 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       margin: 0;
       background: #F3F3F3;
     }
-
     .big-cover {
       position: absolute;
-      top: 0;
+      top: 60px;
       right: 0;
       left: 0;
       height: 350px;
       background: #333;
     }
+    core-header-panel {
+      z-index: 1;
+      height: 65px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    core-toolbar {
+      background: #333333;
+      color: white;
+    }
+    core-toolbar paper-icon-button:hover {
+      color: #919191;
+    }
+    #logout {
+      background: #3C3C3C;
+      text-transform: none;
+    }
   </style>
 </head>
 <body>
-
-
+  <core-header-panel>
+    <core-toolbar>
+      <span flex id='brand'>Jr.DevJobs</span>
+      <paper-icon-button icon='account-circle' role='button' tabindex='0'></paper-icon-button>
+      <paper-button id='logout' label='logout' raisedButton></paper-button>
+    </core-toolbar>
+    <paper-shadow z='1'></paper-shadow>
+  </core-header-panel>
 
   <polymer-element name='user-profile'>
     <template>
-
       <style>
         .chip-container {
           position: absolute;
-          top: 275px;
+          top: 200px;
           right: 0;
           left: 0;
           text-align: center;
         }
-
         .chip {
           display: inline-block;
           position: relative;
@@ -50,25 +77,23 @@
           background-color: #FFF;
           box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
         }
-
+        .chip:hover, .card:hover {
+          cursor: pointer;
+        }
         .chip-top {
           width: 200px;
           height: 200px;
         }
-
         .chip-bottom {
           padding: 8px;
           line-height: 1.5;
         }
-
         .chip-title {
           font-weight: bold;
         }
-
         #details {
-          padding: 200px 10% 0;
+          padding: 160px 10% 0;
         }
-
         .card {
           height: 400px;
           border-radius: 3px;
@@ -77,15 +102,12 @@
           background: #FFF;
           box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
-
         .card-left {
           width: 400px;
         }
-
         .card-right {
           padding: 24px;
         }
-
         .card-icon {
           border-radius: 50%;
           width: 60px;
@@ -192,6 +214,8 @@
       });
     </script>
   </polymer-element>
+
+
 
   <div class='big-cover'></div>
 
