@@ -1,115 +1,201 @@
 <!doctype html>
 <html>
-
 <head>
-
-  <title>Jr.DevJobs | Polymer</title>
-  <meta name='viewport' content='width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes'>
+  <title>Hunter Meyer | Jr.DevJobs</title>
 
   <script src='../bower_components/platform/platform.js'></script>
-
-  <link rel='import' href='../bower_components/core-toolbar/core-toolbar.html'>
-  <link rel='import' href='../bower_components/core-header-panel/core-header-panel.html'>
-  <link rel='import' href='../bower_components/core-menu/core-menu.html'>
-  <link rel='import' href='../bower_components/paper-elements/paper-elements.html'>
-  <link rel='import' href='../bower_components/paper-tabs/paper-tabs.html'>
+  <link rel='import' href='../bower_components/core-animated-pages/core-animated-pages.html'>
+  <link rel='import' href='../bower_components/core-icons/core-icons.html'>
 
   <style>
-  html,body {
-    height: 100%;
-    margin: 0;
-    background-color: #E5E5E5;
-    font-family: 'RobotoDraft', sans-serif;
-  }
-  .container {
-    width: 80%;
-    margin: 50px auto;
-  }
-  core-header-panel {
-    height: 100%;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  core-toolbar {
-    background: #333333;
-    color: white;
-  }
-  core-toolbar paper-icon-button[icon='home'] {
-    text-transform: none;
-    color: #F88509;
-  }
-  core-toolbar paper-icon-button, #brand {
-    color: #DAD6D6;
-  }
-  core-toolbar paper-icon-button:hover {
-    color: #F88509;
-  }
-  .wbg {
-    /*margin: 0px 10px 0px 10px;*/
-  }
-  .wbg core-menu {
-    background: white;
-    margin: 0;
-    padding: 6px;
-  }
-  #tabs {
-    background: white;
-    width: 100%;
-    margin: 0;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  paper-item[icon='check-circle'] {
-    color: #27AE60;
-  }
-  paper-item[icon='cancel'] {
-    color: #E74C3C;
-  }
+    body {
+      font-family: 'Roboto 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      background: #F3F3F3;
+    }
+
+    .big-cover {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 350px;
+      background: #333;
+    }
   </style>
-
 </head>
+<body>
 
-<body unresolved>
 
-  <core-header-panel>
-    <core-toolbar>
-      <paper-icon-button icon='home' role='button' tabindex='0' aria-label='Jobs'></paper-icon-button>
-      <span flex id='brand'>Jr.DevJobs</span>
-      <paper-icon-button icon='add-circle-outline' role='button' tabindex='0' aria-label='Post Job'></paper-icon-button>
-      <paper-icon-button icon='account-circle' role='button' tabindex='0' aria-label='Profile'></paper-icon-button>
-    </core-toolbar>
 
-    <div class='container' layout vertical>
-      <paper-tabs id='tabs' selected='home' self-end>
-        <paper-tab name='home'><paper-icon-button icon='account-circle'></paper-icon-button></paper-tab>
-        <paper-tab name='jobs'>Jobs</paper-tab>
-        <paper-tab name='education'>Education</paper-tab>
-        <paper-tab name='experience'>Experience</paper-tab>
-        <paper-tab name='projects'>Projects</paper-tab>
-        <paper-tab name='resume'>Resume</paper-tab>
-      </paper-tabs>
-      <paper-shadow z='1'></paper-shadow>
-    </div>
+  <polymer-element name='user-profile'>
+    <template>
 
-    <div class='container' layout horizontal>
-      <div class='wbg' flex eight>
-        <job-list show='jobs'></job-list>
-      </div>
-      <div class='wbg' flex four>
-        <core-menu>
-          <paper-item icon='check-circle' label='Education'></paper-item>
-          <paper-item icon='cancel' label='Experience'></paper-item>
-          <paper-item icon='cancel' label='Projects'></paper-item>
-          <paper-item icon='check-circle' label='Resume'></paper-item>
-          <paper-shadow z='1'></paper-shadow>
-        </core-menu>
-      </div>
-    </div>
-  </core-header-panel>
+      <style>
+        .chip-container {
+          position: absolute;
+          top: 275px;
+          right: 0;
+          left: 0;
+          text-align: center;
+        }
 
+        .chip {
+          display: inline-block;
+          position: relative;
+          border-radius: 3px;
+          margin: 4px;
+          overflow: hidden;
+          text-align: start;
+          background-color: #FFF;
+          box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+        }
+
+        .chip-top {
+          width: 200px;
+          height: 200px;
+        }
+
+        .chip-bottom {
+          padding: 8px;
+          line-height: 1.5;
+        }
+
+        .chip-title {
+          font-weight: bold;
+        }
+
+        #details {
+          padding: 200px 10% 0;
+        }
+
+        .card {
+          height: 400px;
+          border-radius: 3px;
+          text-align: start;
+          overflow: hidden;
+          background: #FFF;
+          box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .card-left {
+          width: 400px;
+        }
+
+        .card-right {
+          padding: 24px;
+        }
+
+        .card-icon {
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          margin-right: 16px;
+        }
+        .card-title {
+          font-size: 2em;
+        }
+        .description {
+          font-size: 1em;
+          color: #999;
+        }
+        .skills-list {
+          margin: 0;
+          padding-left: 0;
+        }
+        .skills-list li {
+          list-style: none;
+          padding: 6px;
+          font-size: 24px;
+        }
+      </style>
+
+      <core-animated-pages selected='{{page}}' transitions='hero-transition' on-core-animated-pages-transition-end='{{complete}}'>
+        <section>
+          <div class='chip-container' hero-p on-tap='{{transition}}'>
+            <template repeat='{{items as item}}'>
+              <div class='chip' hero-id='{{item.title}}-{{item.name}}' hero?='{{selectedItem === item }}'>
+                <div class='chip-top' style='background:{{item.color}};' hero-id='{{item.title}}-{{item.name}}-art' hero?='{{selectedItem === item}}'></div>
+                <div class='chip-bottom'>
+                  <div class='chip-title'>{{item.title}}</div>
+                  <div class='chip-name'>{{item.name}}</div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </section>
+
+        <section id='details'>
+          <div class='card' layout horizontal hero-id='{{selectedItem.title}}-{{selectedItem.name}}' hero on-tap='{{transition}}'>
+            <div class='card-left' style='background:{{selectedItem.color}};' hero-id='{{selectedItem.title}}-{{selectedItem.name}}-art' hero></div>
+            <div class='card-right' flex>
+              <div layout horizontal center>
+                <div>
+                  <div class='card-icon' style='background:{{selectedItem.color}};'></div>
+                </div>
+                <div flex>
+                  <div class='card-title'>{{selectedItem.title}}</div>
+                  <div class='card-name'>{{selectedItem.name}}</div>
+                </div>
+              </div>
+              <div layout horizontal>
+                <div flex>
+                  <p class='description'>{{selectedItem.description}}</p>
+                </div>
+              </div>
+              <div layout horizontal>
+                <div flex>
+                  <ol class='skills-list'>
+                    <template repeat='{{selectedItem.skills as skill}}'>
+                      <li><core-icon icon='chevron-right' role='img' tabindex='0' aria-label='skill'></core-icon> {{skill}}</li>
+                    </template>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </core-animated-pages>
+
+    </template>
+
+    <script>
+      Polymer('user-profile', {
+        page: 0,
+        items: [
+          { title: 'Software Engineer', name: 'Listen360', color: '#70C26F',
+              description: 'Reporting directly to the CTO, I am responsible for application development, database management, and other fun stuff.',
+              skills: ['Ruby on Rails', 'Angular', 'SQL', 'Redis', 'Nginx']
+          },
+          { title: 'Web Developer Intern', name: 'KBOO-FM', color: '#972FF8',
+              description: 'On a team of six, we built a mobile app so that listeners can stream KBOO-FM radio on the go, wherever they are.',
+              skills: ['Ruby on Rails', 'Steaming Audio', 'JavaScript', 'Nokogiri', 'Responsive Design' ]
+          },
+          { title: 'Software Developer', name: 'Productivity Apex', color: '#FE7D7D',
+              description: 'In this position I learned C# and .NET require alot more code and that MS Visual Studio is hands down the best IDE.',
+              skills: ['.NET', 'C#', 'Entity Framework', 'Visual Studio', 'MS SQL']
+          },
+          { title: 'Loyalty Marketing', name: 'Mercury', color: '#7DD6FE',
+              description: 'As part of an acqui-hire, I fucked shit up on the reg by making the users of our mobile loyalty program a ton of money.',
+              skills: ['Mobile Marketing', 'Financial Analysis', 'Consumer Behavior', 'Excel', 'ROI Optimization']
+          }
+        ],
+        selectedItem: null,
+        transition: function(e) {
+          if (this.page === 0 && e.target.templateInstance.model.item) {
+            this.selectedItem = e.target.templateInstance.model.item;
+            this.page = 1;
+          } else {
+            this.page = 0;
+          }
+        }
+      });
+    </script>
+  </polymer-element>
+
+  <div class='big-cover'></div>
+
+  <user-profile></user-profile>
 
 </body>
-
 </html>
